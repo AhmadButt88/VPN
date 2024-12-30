@@ -1,4 +1,4 @@
-package com.example.openVpnDemo;
+package com.hameed.vVpn;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

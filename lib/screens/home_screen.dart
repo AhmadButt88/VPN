@@ -10,20 +10,27 @@ import '../models/vpn_status.dart';
 import '../services/vpn_engine.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  // Initial VPN state set to disconnected
   String _vpnState = VpnEngine.vpnDisconnected;
-  List<VpnConfig> _listVpn = [];
+
+  // List to store VPN configurations
+  final List<VpnConfig> _listVpn = [];
+
+  // Currently selected VPN configuration
   VpnConfig? _selectedVpn;
 
   @override
   void initState() {
     super.initState();
 
-    ///Add listener to update vpn state
+    // Add listener to update VPN state
     VpnEngine.vpnStageSnapshot().listen((event) {
       setState(() => _vpnState = event);
     });
@@ -34,16 +41,17 @@ class _HomeScreenState extends State<HomeScreen> {
   void initVpn() async {
     //sample vpn config file (you can get more from https://www.vpngate.net/)
     _listVpn.add(VpnConfig(
-        config: await rootBundle.loadString('assets/vpn/japan.ovpn'),
+        config: await rootBundle.loadString(
+            'assets/vpn/vpngate_public-vpn-39.opengw.net_tcp_443.ovpn'),
         country: 'Japan',
         username: 'vpn',
         password: 'vpn'));
 
-    _listVpn.add(VpnConfig(
-        config: await rootBundle.loadString('assets/vpn/thailand.ovpn'),
-        country: 'Thailand',
-        username: 'vpn',
-        password: 'vpn'));
+    // _listVpn.add(VpnConfig(
+    //     config: await rootBundle.loadString('assets/vpn/thailand.ovpn'),
+    //     country: 'Thailand',
+    //     username: 'vpn',
+    //     password: 'vpn'));
 
     SchedulerBinding.instance.addPostFrameCallback(
         (t) => setState(() => _selectedVpn = _listVpn.first));
@@ -67,13 +75,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       shape: StadiumBorder(),
                       backgroundColor: Theme.of(context).primaryColor,
                     ),
+                    onPressed: _connectClick,
                     child: Text(
                       _vpnState == VpnEngine.vpnDisconnected
                           ? 'Connect VPN'
                           : _vpnState.replaceAll("_", " ").toUpperCase(),
                       style: TextStyle(color: Colors.white),
                     ),
-                    onPressed: _connectClick,
                   ),
                 ),
                 StreamBuilder<VpnStatus?>(

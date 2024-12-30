@@ -1,10 +1,9 @@
-# By Harsh H. Rajpurohit
-name: vpn_basic_project
+name: v_vpn
 description: Flutter Android VPN based on OpenVPN Library.
 publish_to: 'none'
 
 # App Version
-version: 1.0.2+2
+version: 0.0.1
 
 environment:
   sdk: ">=3.4.3 <4.0.0"
@@ -16,6 +15,7 @@ dependencies:
   
   # Cupertino style icons
   cupertino_icons: ^1.0.8
+  device_preview: ^1.2.0
 
 
 dev_dependencies:
