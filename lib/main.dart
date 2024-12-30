@@ -18,7 +18,6 @@ void main() {
   });
 }
 
-/// This is the main widget of the app.
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -26,6 +25,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'VPN PROJECT',
+
+      //theme
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(centerTitle: true),
+      ),
+
       home: SplashScreen(),
     );
   }
