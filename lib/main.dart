@@ -1,38 +1,32 @@
-// import 'package:device_preview/device_preview.dart';
-// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'screens/home_screen.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:v_vpn/screens/splash_screen.dart';
 
-// void main() => runApp(
-//       DevicePreview(
-//         enabled: !kReleaseMode,
-//         builder: (context) => MyApp(), // Wrap your app
-//       ),
-//     );
-
-//main function
 void main() {
-  runApp(MyApp());
+  // Makes sure everything is set up before the app starts.
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Hides the system UI (like the status and navigation bars) for a fullscreen experience.
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+
+  // Keeps the app in portrait mode (no rotation).
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) {
+    // Starts the app by calling the MyApp widget.
+    runApp(const MyApp());
+  });
 }
 
-class MyApp extends StatefulWidget {
+/// This is the main widget of the app.
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      // useInheritedMediaQuery: true,
-      // locale: DevicePreview.locale(context),
-      // builder: DevicePreview.appBuilder,
-      // theme: ThemeData.light(),
-      // darkTheme: ThemeData.dark(),
-      title: 'OpenVpn Demo',
-      home: HomeScreen(),
+    return GetMaterialApp(
+      title: 'VPN PROJECT',
+      home: SplashScreen(),
     );
   }
 }
