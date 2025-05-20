@@ -94,12 +94,12 @@ class _SplashScreenState extends State<SplashScreen>
                   const Duration(milliseconds: 1500), // Animation duration.
               builder: (context, double value, child) {
                 // Calculate how many characters to display based on animation progress.
-                int length = 'MADE BY HAMEED'.length;
+                int length = 'MADE BY MUHAMMAD AHMAD ATHER AND SHEIKH ABDUL HAADI'.length;
                 int charactersToShow = (value * length).round();
 
                 // Display the animated substring of the text.
                 return Text(
-                  'MADE BY HAMEED'.substring(0, charactersToShow),
+                  'MADE BY MUHAMMAD AHMAD ATHER AND SHEIKH ABDUL HAADI'.substring(0, charactersToShow),
                   textAlign: TextAlign.center, // Center-align the text.
                   style: TextStyle(
                     fontSize: 16, // Font size of the text.
